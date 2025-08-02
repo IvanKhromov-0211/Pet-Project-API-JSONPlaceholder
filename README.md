@@ -8,7 +8,7 @@ The collection includes GET, POST, PATCH, and DELETE requests with extended auto
 ##Collection Structure
 The collection covers the following endpoints:
 
-|Method|	Endpoint	Description
+|Method|	|Endpoint|	|Description|
 |GET|	/posts	Retrieve a list of posts
 |GET	/posts/1	Retrieve a specific post
 |POST	/posts	Create a new post
