@@ -1,4 +1,5 @@
 #Postman Tests for JSONPlaceholder API
+
 This pet project demonstrates API testing skills using Postman.
 It targets the public API: https://jsonplaceholder.typicode.com
 
