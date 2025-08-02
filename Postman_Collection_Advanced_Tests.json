@@ -1,0 +1,369 @@
+{
+  "info": {
+    "name": "JSONPlaceholder Full Test Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET /posts",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Response is JSON', () => { pm.response.to.be.withBody; pm.response.to.be.json; });",
+              "pm.test('Posts list is not empty', () => { var data = pm.response.json(); pm.expect(data.length).to.be.above(0); });",
+              "pm.test(\"Response should be an array\", () => {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(Array.isArray(jsonData)).to.be.true;",
+              "    pm.expect(jsonData.length).to.be.above(0);",
+              "});",
+              "pm.test(\"Each post should have userId, id, title, and body\", () => {",
+              "    const jsonData = pm.response.json();",
+              "    jsonData.forEach(post => {",
+              "        pm.expect(post).to.have.property('userId');",
+              "        pm.expect(post).to.have.property('id');",
+              "        pm.expect(post).to.have.property('title');",
+              "        pm.expect(post).to.have.property('body');",
+              "    });",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /users",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ],
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /comments",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/comments",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ],
+          "path": [
+            "comments"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST /posts",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ],
+          "path": [
+            "posts"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"foo\", \"body\": \"bar\", \"userId\": 1}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 201', function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.test('Created post has ID', () => { var json = pm.response.json(); pm.expect(json).to.have.property('id'); });",
+              "pm.test(\"Post created correctly\", () => {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('title', 'Test title');",
+              "    pm.expect(jsonData).to.have.property('body', 'Test body');",
+              "    pm.expect(jsonData).to.have.property('userId', 1);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST /comments",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/comments",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ],
+          "path": [
+            "comments"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"my comment\", \"body\": \"lorem\", \"email\": \"test@example.com\", \"postId\": 1}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 201', function () {",
+              "    pm.response.to.have.status(201);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PATCH /posts/1",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts/1",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"updated title\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Title updated', () => { var json = pm.response.json(); pm.expect(json.title).to.eql('updated title'); });",
+              "pm.test(\"Post updated correctly\", () => {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('title');",
+              "    pm.expect(jsonData.title.length).to.be.above(0);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PATCH /users/1",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users/1",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ],
+          "path": [
+            "users",
+            "1"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"new@mail.com\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Email updated', () => { var json = pm.response.json(); pm.expect(json.email).to.eql('new@mail.com'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "DELETE /posts/1",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts/1",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Empty response on delete', () => { pm.expect(pm.response.text()).to.eql('{}'); });",
+              "pm.test(\"Response should be empty object\", () => {",
+              "    pm.expect(pm.response.text()).to.eql('{}');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "DELETE /comments/1",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/comments/1",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ],
+          "path": [
+            "comments",
+            "1"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Empty response on delete', () => { pm.expect(pm.response.text()).to.eql('{}'); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
