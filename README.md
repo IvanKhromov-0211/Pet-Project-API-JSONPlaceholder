@@ -8,15 +8,15 @@ The collection includes GET, POST, PATCH, and DELETE requests with extended auto
 ##Collection Structure
 The collection covers the following endpoints:
 
-Method	Endpoint	Description
-GET	/posts	Retrieve a list of posts
-GET	/posts/1	Retrieve a specific post
-POST	/posts	Create a new post
-PATCH	/posts/1	Partially update a post
-DELETE	/posts/1	Delete a post
-DELETE	/posts/2	Delete another post
-GET	/comments	Retrieve list of comments
-GET	/users	Retrieve list of users
+|Method|	Endpoint	Description
+|GET|	/posts	Retrieve a list of posts
+|GET	/posts/1	Retrieve a specific post
+|POST	/posts	Create a new post
+|PATCH	/posts/1	Partially update a post
+|DELETE	/posts/1	Delete a post
+|DELETE	/posts/2	Delete another post
+|GET	/comments	Retrieve list of comments
+|GET	/users	Retrieve list of users
 
 ##What is Tested
 Status code validation (e.g., 200, 201, 204)
