@@ -39,7 +39,7 @@ Empty response after deletion ({})
 
 ##How to Use
 
-Open Postman.
+Open Postman
 
 Import the file:
 Postman_Collection_Advanced_Tests.json
